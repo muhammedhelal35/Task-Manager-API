@@ -1,10 +1,6 @@
 const ApiError = require('../utils/apiError');
 
-/**
- * Middleware to validate request body against a schema
- * @param {Object} schema - Joi validation schema
- * @returns {Function} Express middleware
- */
+
 const validateRequest = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body, {

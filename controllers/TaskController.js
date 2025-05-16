@@ -7,12 +7,7 @@ class TaskController {
     this.taskService = new TaskService();
   }
 
-  /**
-   * Create a new task
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   createTask = async (req, res, next) => {
     try {
       const task = await this.taskService.createTask(req.body, req.user.id);
@@ -22,12 +17,7 @@ class TaskController {
     }
   };
 
-  /**
-   * Get all tasks for the current user
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   getTasks = async (req, res, next) => {
     try {
       const result = await this.taskService.getTasks(req.user.id, req.query);
@@ -37,12 +27,7 @@ class TaskController {
     }
   };
 
-  /**
-   * Get a single task
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   getTask = async (req, res, next) => {
     try {
       const task = await this.taskService.getTask(req.params.id, req.user.id);
@@ -52,12 +37,7 @@ class TaskController {
     }
   };
 
-  /**
-   * Update a task
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+ 
   updateTask = async (req, res, next) => {
     try {
       const task = await this.taskService.updateTask(
@@ -71,12 +51,7 @@ class TaskController {
     }
   };
 
-  /**
-   * Delete a task
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   deleteTask = async (req, res, next) => {
     try {
       await this.taskService.deleteTask(req.params.id, req.user.id);

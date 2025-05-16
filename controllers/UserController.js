@@ -2,25 +2,17 @@ const UserService = require('../services/UserService');
 const ApiResponse = require('../utils/apiResponse');
 const { validateEmail, validatePassword } = require('../utils/validators');
 
-/**
- * Controller class for handling user-related operations
- */
 class UserController {
   constructor() {
     this.userService = new UserService();
   }
 
-  /**
-   * Register a new user
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   register = async (req, res, next) => {
     try {
       const { email, password, name } = req.body;
 
-      // Input validation
+      
       if (!email || !password || !name) {
         return ApiResponse.error(res, 'Email, password and name are required', 400);
       }
@@ -40,12 +32,7 @@ class UserController {
     }
   };
 
-  /**
-   * Login user and return JWT token
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+ 
   login = async (req, res, next) => {
     try {
       const { email, password } = req.body;
@@ -61,12 +48,7 @@ class UserController {
     }
   };
 
-  /**
-   * Logout user by invalidating their token
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   logout = async (req, res, next) => {
     try {
       const token = req.headers.authorization?.split(' ')[1];
@@ -81,12 +63,7 @@ class UserController {
     }
   };
 
-  /**
-   * Get current user's profile
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   getMe = async (req, res, next) => {
     try {
       const user = await this.userService.getMe(req.user.id);
@@ -96,12 +73,7 @@ class UserController {
     }
   };
 
-  /**
-   * Update user details
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   updateDetails = async (req, res, next) => {
     try {
       const { email, name } = req.body;
@@ -117,12 +89,7 @@ class UserController {
     }
   };
 
-  /**
-   * Change user password
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
+  
   changePassword = async (req, res, next) => {
     try {
       const { currentPassword, newPassword } = req.body;
@@ -142,12 +109,6 @@ class UserController {
     }
   };
 
-  /**
-   * Delete user account
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   * @param {Function} next - Express next middleware function
-   */
   deleteAccount = async (req, res, next) => {
     try {
       await this.userService.deleteAccount(req.user.id);

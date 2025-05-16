@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-// Create task validation schema
+
 const createTaskSchema = Joi.object({
   title: Joi.string()
     .min(3)
@@ -35,7 +35,6 @@ const createTaskSchema = Joi.object({
     })
 });
 
-// Update task validation schema
 const updateTaskSchema = Joi.object({
   title: Joi.string()
     .min(3)

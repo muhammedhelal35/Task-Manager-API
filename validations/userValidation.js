@@ -26,7 +26,11 @@ const registerSchema = Joi.object({
       'string.empty': 'Password is required',
       'string.min': 'Password must be at least 8 characters long',
       'string.pattern.base': 'Password must contain at least one letter and one number'
-    })
+    }),
+  confirmPassword: Joi.string()
+    .valid(Joi.ref('password'))
+    .required()
+    .messages({ 'any.only': 'Passwords do not match' })
 });
 
 // Login validation schema
@@ -78,7 +82,11 @@ const changePasswordSchema = Joi.object({
       'string.empty': 'New password is required',
       'string.min': 'New password must be at least 8 characters long',
       'string.pattern.base': 'New password must contain at least one letter and one number'
-    })
+    }),
+  confirmPassword: Joi.string()
+    .valid(Joi.ref('newPassword'))
+    .required()
+    .messages({ 'any.only': 'Passwords do not match' })
 });
 
 module.exports = {
